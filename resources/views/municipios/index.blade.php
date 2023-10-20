@@ -36,14 +36,14 @@
             <td>
 
               {{-- <a href="{{route('comunas.edit' , ['comuna'=>$comuna->comu_codi])}}"
-                class="btn btn-info">Editar</a>
+                class="btn btn-info">Editar</a> --}}
 
-              <form action="{{route('comunas.destroy' , ['comuna' => $comuna->comu_codi])}}"
+              <form action="{{route('municipios.destroy' , ['municipio' => $municipio->muni_codi])}}"
                 method="POST" style="display: inline-block">
                 @method('delete')
                 @csrf
                 <input class="btn btn-danger" type="submit" value="Delete">
-              </form> --}}
+              </form>
             </td>
           </tr>
           @endforeach
