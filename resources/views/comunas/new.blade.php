@@ -8,33 +8,35 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Listado de Comunas</title>
+    <title>Añadir Comuna</title>
   </head>
   <body>
     <div class="container">
-        <h1>Listado de Comunas</h1>
-        <a href="{{route('comunas.create')}}" class="btn btn-success">Añadir</a>
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Codigo</th>
-                <th scope="col">Comuna</th>
-                <th scope="col">Municipio</th>
-                <th scope="col">Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-                @foreach ($comunas as $comuna )
-                    
-              <tr>
-                <th scope="row">{{ $comuna->comu_codi}}</th>
-                <td>{{$comuna->comu_nomb}}</td>
-                <td>{{$comuna->muni_nomb}}</td>
-                <td><span>Acciones</span></td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
+
+    <h1>Añadir Comuna</h1>
+    <form method="POST" action="{{route('comunas.store')}}">
+      @csrf
+        <div class="mb-3">
+          <label for="id" class="form-label">Codigo</label>
+          <input type="text" class="form-control" id="id" aria-describedby="idHelp" name="id" disabled="disabled">
+          <div id="idHelp" class="form-text">Codigo Comuna</div>
+        </div>
+        <div class="mb-3">
+          <label for="name" class="form-label">Comuna</label>
+          <input type="text" class="form-control" id="name" aria-describedby="nameHelp" name="name" placeholder="Comuna Nombre">
+        </div>
+      <label for="municipio">Municipio:</label>
+      <select class="form-select" name="code" id="municipality" required>
+        <option selected disabled value="">Elige Uno..</option>
+        @foreach ($municipios as $municipio)
+          <option value="{{$municipio->muni_codi}}">{{$municipio->muni_nomb}}</option>
+        @endforeach
+      </select>
+        <div class="m3-3">
+          <button type="submit" class="btn btn-primary">Guardar</button>
+          <a href="{{route('comunas.index')}}" class="btn btn-warning">Cancelar</a>
+        </div>
+      </form>
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
