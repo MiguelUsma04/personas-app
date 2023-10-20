@@ -29,7 +29,10 @@ class MunicipioController extends Controller
      */
     public function create()
     {
-        //
+        $departamentos = DB::table('tb_departamento')
+        ->orderBy('depa_nomb')
+        ->get();
+        return view('municipios.new', ['departamentos'=> $departamentos]);
     }
 
     /**
@@ -37,7 +40,16 @@ class MunicipioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $municipios = new Municipio();
+        $municipios->muni_nomb = $request->name;
+        $municipios->depa_codi = $request->code;
+        $municipios->save();
+
+        $municipios = DB::table('tb_municipio')
+        ->join('tb_departamento','tb_municipio.depa_codi','=','tb_departamento.depa_codi')
+        ->select('tb_municipio.*','tb_departamento.depa_nomb')
+        ->get();
+        return view("municipios.index", ["municipios" => $municipios]);
     }
 
     /**
