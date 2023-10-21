@@ -1,38 +1,31 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layout.app')
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+@section('content')
+    <div class="container mx-auto w-full">
 
-    <title>Listado de Paises</title>
-  </head>
-  <body>
-    <div class="container">
+      <h1 class="text-3xl font-semibold p-4">Listado de Paises</h1>
+      {{-- <div class="p-5">
+        <a href="{{route('comunas.create')}}" class="p-2 bg-green-400 hover:bg-green-500 text-white rounded shadow-lg text-xl">Añadir</a>
+      </div> --}}
+      <div>
 
-    <h1>Listado de Paises</h1>
-    {{-- <a href="{{route('paises.create')}}" class="btn btn-success">Añadir</a> --}}
-
-    <table class="table">
-        <thead>
+    <table class="w-full">
+        <thead class="bg-blue-800 text-white">
           <tr>
-            <th scope="col">Codigo</th>
-            <th scope="col">Pais</th>
-            <th scope="col">Codigo Capital</th>
-            <th scope="col">Acciones</th>
+            <th class="p-3 text-xl uppercase">Codigo</th>
+            <th class="p-3 text-xl uppercase">Pais</th>
+            <th class="p-3 text-xl uppercase">Codigo Capital</th>
+            {{-- <th scope="col">Acciones</th> --}}
           </tr>
         </thead>
         <tbody>
             @foreach ($paiss as $pais )
                 
-          <tr>
-            <th scope="row">{{ $pais->pais_codi}}</th>
-            <td>{{$pais->pais_nomb}}</td>
-            <td>{{$pais->pais_capi}}</td>
-            <td><span>Acciones</span></td>
+          <tr class="text-center">
+            <th class="border p-5">{{ $pais->pais_codi}}</th>
+            <td class="border">{{$pais->pais_nomb}}</td>
+            <td class="border">{{$pais->pais_capi}}</td>
+            {{-- <td class="border"><span>Acciones</span></td> --}}
             <td>
 
               {{-- <a href="{{route('municipios.edit' , ['municipio'=>$municipio->muni_codi])}}"
@@ -51,15 +44,4 @@
       </table>
     </div>
 
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
-  </body>
-</html>
+@endsection

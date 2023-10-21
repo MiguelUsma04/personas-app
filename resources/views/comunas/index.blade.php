@@ -1,63 +1,51 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layout.app')
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+@section('title')
+    Comuna
+@endsection
 
-    <title>Listado de Comunas</title>
-  </head>
-  <body>
-    <div class="container">
-        <h1>Listado de Comunas</h1>
-        <a href="{{route('comunas.create')}}" class="btn btn-success">Añadir</a>
-        <table class="table">
-            <thead>
+@section('content')
+    <div class="container mx-auto w-full">
+        <h1 class="text-3xl font-semibold p-4">Listado de Comunas</h1>
+        <div class="p-5">
+          <a href="{{route('comunas.create')}}" class="p-2 bg-green-500 hover:bg-green-700 text-white rounded shadow-lg text-xl">Añadir</a>
+        </div>
+        <div>
+
+        <table class="w-full">
+            <thead class="bg-blue-800 text-white">
               <tr>
-                <th scope="col">Codigo</th>
-                <th scope="col">Comuna</th>
-                <th scope="col">Municipio</th>
-                <th scope="col">Acciones</th>
+                <th class="p-3 text-xl uppercase">Codigo</th>
+                <th class="p-3 text-xl uppercase">Comuna</th>
+                <th class="p-3 text-xl uppercase">Municipio</th>
+                <th class="p-3 text-xl uppercase">Acciones</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="">
                 @foreach ($comunas as $comuna )
                     
-              <tr>
-                <th scope="row">{{ $comuna->comu_codi}}</th>
-                <td>{{$comuna->comu_nomb}}</td>
-                <td>{{$comuna->muni_nomb}}</td>
-                <td><span>Acciones</span></td>
-                <td>
-
+              <tr class="text-center">
+                <th class="border">{{ $comuna->comu_codi}}</th>
+                <td class="border">{{$comuna->comu_nomb}}</td>
+                <td class="border">{{$comuna->muni_nomb}}</td>
+                <td class="border">
+                  <div class="flex justify-center p-3 gap-4 items center w-100px">
                   <a href="{{route('comunas.edit' , ['comuna'=>$comuna->comu_codi])}}"
-                    class="btn btn-info">Editar</a>
-
+                    class="p-3 text-xl mt-2 bg-yellow-400 hover:bg-yellow-500 text-white rounded-md">Editar</a>
+                  
                   <form action="{{route('comunas.destroy' , ['comuna' => $comuna->comu_codi])}}"
                     method="POST" style="display: inline-block">
                     @method('delete')
                     @csrf
-                    <input class="btn btn-danger" type="submit" value="Delete">
+                    <input class="p-3 text-xl mt-2 bg-red-400 hover:bg-red-500 text-white rounded-lg" type="submit" value="Eliminar">
                   </form>
+                </div>
                 </td>
               </tr>
               @endforeach
             </tbody>
           </table>
+        </div>
+
     </div>
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
-  </body>
-</html>
+@endsection
