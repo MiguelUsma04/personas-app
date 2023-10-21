@@ -8,13 +8,13 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Listado de Municipios</title>
+    <title>Listado de Departamentos</title>
   </head>
   <body>
     <div class="container">
 
-    <h1>Listado de Municipios</h1>
-    {{-- <a href="{{route('municipios.create')}}" class="btn btn-success">Añadir</a> --}}
+    <h1>Listado de Departamentos</h1>
+    <a href="{{route('departamentos.create')}}" class="btn btn-success">Añadir</a>
 
     <table class="table">
         <thead>
