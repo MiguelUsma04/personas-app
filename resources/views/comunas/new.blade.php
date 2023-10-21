@@ -15,7 +15,6 @@
 
     <h1>Añadir Comuna</h1>
     <form method="POST" action="{{route('comunas.store')}}">
-      
       @csrf
         <div class="mb-3">
           <label for="id" class="form-label">Codigo</label>

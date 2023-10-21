@@ -8,47 +8,36 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Listado de Paises</title>
+    <title>Añadir Pais</title>
   </head>
   <body>
     <div class="container">
 
-    <h1>Listado de Paises</h1>
-    {{-- <a href="{{route('paises.create')}}" class="btn btn-success">Añadir</a> --}}
-
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Codigo</th>
-            <th scope="col">Pais</th>
-            <th scope="col">Codigo Capital</th>
-            <th scope="col">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-            @foreach ($paiss as $pais )
-                
-          <tr>
-            <th scope="row">{{ $pais->pais_codi}}</th>
-            <td>{{$pais->pais_nomb}}</td>
-            <td>{{$pais->pais_capi}}</td>
-            <td><span>Acciones</span></td>
-            <td>
-
-              {{-- <a href="{{route('municipios.edit' , ['municipio'=>$municipio->muni_codi])}}"
-                class="btn btn-info">Editar</a>
-
-              <form action="{{route('municipios.destroy' , ['municipio' => $municipio->muni_codi])}}"
-                method="POST" style="display: inline-block">
-                @method('delete')
-                @csrf
-                <input class="btn btn-danger" type="submit" value="Delete">
-              </form> --}}
-            </td>
-          </tr>
-          @endforeach
-        </tbody>
-      </table>
+    <h1>Añadir Pais</h1>
+    <form method="POST" action="{{route('paiss.store')}}">
+      
+      @csrf
+        <div class="mb-3">
+          <label for="id" class="form-label">Codigo</label>
+          <input type="text" class="form-control" id="id" aria-describedby="idHelp" name="id" disabled="disabled">
+          <div id="idHelp" class="form-text">Codigo Pais</div>
+        </div>
+        <div class="mb-3">
+          <label for="name" class="form-label">Pais</label>
+          <input type="text" class="form-control" id="name" aria-describedby="nameHelp" name="name" placeholder="Pais Nombre">
+        </div>
+      <label for="departamento">Codigo Capital:</label>
+      <select class="form-select" name="code" id="departament" required>
+        <option selected disabled value="">Elige Uno..</option>
+        @foreach ($capitals as $capital)
+          <option value="{{$capital->pais_capi}}">{{$capital->pais_capi}}</option>
+        @endforeach
+      </select>
+        <div class="m3-3">
+          <button type="submit" class="btn btn-primary">Guardar</button>
+          <a href="{{route('paises.index')}}" class="btn btn-warning">Cancelar</a>
+        </div>
+      </form>
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Pais;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class PaisController extends Controller
 {
@@ -22,7 +24,10 @@ class PaisController extends Controller
      */
     public function create()
     {
-        //
+        $paiss = DB::table('tb_pais')
+        ->orderBy('pais_nomb')
+        ->get();
+        return view('comunas.new', ['paiss'=> $paiss]);
     }
 
     /**
@@ -30,7 +35,16 @@ class PaisController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pais = new Pais();
+        $pais->pais_nomb = $request->name;
+        $pais->pais_capi = $request->code;
+        $pais->save();
+
+        // $comunas = DB::table('tb_comuna')
+        // ->join('tb_municipio','tb_comuna.muni_codi','=','tb_municipio.muni_codi')
+        // ->select('tb_comuna.*','tb_municipio.muni_nomb')
+        // ->get();
+        return view("paises.index", ["paiss" => $pais]);
     }
 
     /**
