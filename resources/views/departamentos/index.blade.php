@@ -35,8 +35,8 @@
             <td><span>Acciones</span></td>
             <td>
 
-              {{-- <a href="{{route('departamentos.edit' , ['municipio'=>$municipio->muni_codi])}}"
-                class="btn btn-info">Editar</a> --}}
+              <a href="{{route('departamentos.edit' , ['departamento'=>$departamento->depa_codi])}}"
+                class="btn btn-info">Editar</a>
 
               <form action="{{route('departamentos.destroy' , ['departamento' => $departamento->depa_codi])}}"
                 method="POST" style="display: inline-block">
