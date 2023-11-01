@@ -30,8 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
+    
 Route::get('/comunas', [ComunaController::class,'index'])->name('comunas.index');
 Route::post('/comunas', [ComunaController::class,'store'])->name('comunas.store');
 Route::get('/comunas/create', [ComunaController::class,'create'])->name('comunas.create');
@@ -56,5 +56,7 @@ Route::get('/departamentos/{departamento}/edit', [DepartamentoController::class,
 Route::get('/paises', [PaisController::class,'index'])->name('paises.index');
 Route::post('/paises', [PaisController::class,'store'])->name('paises.store');
 Route::get('/paises/create', [PaisController::class,'create'])->name('paises.create');
+});
+
 
 require __DIR__.'/auth.php';
